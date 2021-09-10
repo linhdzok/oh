@@ -1,0 +1,22 @@
+name: Windows Server 2016
+
+on: 
+  workflow_dispatch:
+    inputs:
+      chrome_access_code:
+        description: https://remotedesktop.google.com/headless
+        required: true
+      pin:
+        description: Enter your 6 numbers pin
+        required: true
+jobs:
+  build:
+    runs-on: windows-2016
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run settting file
+        run: |
+          ./windows_config/setting.ps1
+          ${{ github.event.inputs.chrome_access_code }} -pin=${{ github.event.inputs.pin }}
+      - name: Windows Server ready to go 
+        run: sleep 86400

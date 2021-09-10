@@ -1,0 +1,22 @@
+name: Ubuntu 18.04
+
+on: 
+  workflow_dispatch:
+    inputs:
+      chrome_access_code:
+        description: https://remotedesktop.google.com/headless
+        required: true
+      pin:
+        description: Enter your 6 numbers pin
+        required: true
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run settting file
+        run: |
+          sudo bash ./linux_config/setting.sh
+          ${{ github.event.inputs.chrome_access_code }} -pin=${{ github.event.inputs.pin }}
+      - name: Ubuntu ready to go 
+        run: sleep 1d
