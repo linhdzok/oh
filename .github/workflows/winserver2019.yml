@@ -19,4 +19,4 @@ jobs:
           ./windows_config/setting.ps1
           ${{ github.event.inputs.chrome_access_code }} -pin=${{ github.event.inputs.pin }}
       - name: Windows Server ready to go 
-        run: sleep 82837473
+        run: sleep 86400
